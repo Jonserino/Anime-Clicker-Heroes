@@ -12,8 +12,9 @@ function monsterClick(){
     gold++;
 }
 function hireHero(){
-    if (gold > 50){
+    if (gold >= 50){
         heroes++;
+        hero_num_EL.innerHTML = "Level: " + heroes;
         gold -= 50;
     }
 
@@ -22,7 +23,7 @@ function hireHero(){
 monster_EL.addEventListener("click", monsterClick); // Når vi klikker på monster
 hero_EL.addEventListener("click", hireHero);
 
-var timer = setInterval(myTimer, 10); // Kjører funksjonen mytimer 1 gang i sekundet
+var timer = setInterval(myTimer, 200); // Kjører funksjonen mytimer 1 gang i sekundet
 function myTimer(){
     gold += heroes;
     gold_EL.innerHTML = gold;

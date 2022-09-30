@@ -1,6 +1,11 @@
 .container {
     display: flex;
 }
+    .money {
+        display: flex;
+        flex-direction: row;
+    }
+        .moneyPouch
         .catKnight{
             width: 20%;
         }
