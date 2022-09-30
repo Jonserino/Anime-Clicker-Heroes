@@ -8,19 +8,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">   
-    <div class="money">
+<div id="container" class="container">   
+    <div id="money" class="money">
         <img id="moneyPouch" class="moneyPouch" src="Pictures/Items/bagOfGold.png" alt="A Coind Pouch">
         <h1 id="gold" class="gold">0</h1>
     </div>
-    <div class="heroes">
+    <div id="heroesID" class="heroes">
         <img id="catKnight" class="catKnight" src="Pictures/Heroes/catgirlKnight.png" alt="She's eager to fight for you, from the local knights and wanting a proper adventure.">
         <h2 id="heroNum" class="heroNum">Level: 0</h3>
     </div>
-    <div class="images">
+    <div id="images" class="images">
+        <progress id="health" class="health" value="12" max="12"></progress>
         <img id="monsters" class="monsters" src="Pictures/Monsters/slimeMonster.png" alt="It's just a basic slime, a good monster for starting your adventure.">
         <img id="platforms" class="platforms" src="Pictures/Platforms/grassPlatform.png" alt="A Grass Platform">
     </div>
+    <input id="checkbox" class="checkbox" type="checkbox" name="checkbox"/>
 </div>
 <script src="script.js"></script>
 </body>
