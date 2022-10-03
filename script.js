@@ -11,41 +11,59 @@ images_EL = document.querySelector("#images");
 
 let health = document.getElementById("health");
 
+function random(max){
+    return Math.floor(Math.random() * max);
+}
 
-console.log(gold_EL);
 
 gold = 0;
 heroes = 0;
 seconds = 1000;
+var drop = 12;
+var hp = 12;
+var maxHp = 12;
+
+
+function slimes(){
+    monster_EL.src="Pictures/Monsters/slimeMonster.png";
+    drop = 12;
+    maxHp = 12;
+    hp = 12;
+}
+
+function boars(){
+    monster_EL.src="Pictures/Monsters/boarMonster.png";
+    drop = 24;
+    maxHp = 24;
+    hp = 24;
+}
+
+console.log(gold_EL);
+console.log(hp);
+console.log(random(2));
+
+function spawn(){
+    if (monster_EL.style.visibility="hidden"){
+        monster_EL.style.visibility="visible";
+    }
+    if (health.value <= 0){
+        console.log(random(2));
+        if (random(2) == 0) {
+            boars();
+        }
+        if (random(2) == 1) {
+            slimes();
+        }
+        health.value += hp;
+        health.max = maxHp;
+    }
+}
 
 function monsterClick(){
-    health.value -= 1;
     console.log(health.value);
+    health.value -= 1;
     die();
     spawn();
-}
-function hireHero(){
-    if (gold >= 1){
-        heroes++;
-        hero_num_EL.innerHTML = "Level: " + heroes;
-        gold -= 1;
-        seconds -= 10;
-    }
-
-}
-
-monster_EL.addEventListener("click", monsterClick); // Når vi klikker på monster
-hero_EL.addEventListener("click", hireHero);
-
-var timer = setInterval(myTimer, seconds); // Kjører funksjonen mytimer 1 gang i sekundet
-function myTimer(){
-    if (heroes + 1){
-        timer - 10;
-    }
-    if (heroes >= 1){
-        monsterClick();
-    }
-    gold_EL.innerHTML = gold;
 }
 
 function die(){
@@ -53,39 +71,33 @@ function die(){
         console.log("monster dead");
         monster_EL.style.visibility="hidden";
         console.log("monster gone");
-        gold++;
+        gold += drop;
     } else {
         monster_EL.style.visibility="visible";
     }
 }
-function spawn(){
-    if (monster_EL.style.visibility="hidden"){
-        monster_EL.style.visibility="visible";
-    }
-    if (health.value <= 0){
-        health.value = 12;
+
+function hireHero(){
+    if (gold >= 10){
+        heroes++;
+        hero_num_EL.innerHTML = "Level: " + heroes;
+        gold -= 10;
+        seconds -= 10;
+        timer = setInterval(myTimer, seconds);
     }
 }
 
-var checkbox = document.querySelector("input[name=checkbox]");
 
-checkbox.addEventListener("click", toggleHitboxes);
 
-function toggleHitboxes(){
-    if (checkbox.checked) {
-        monster_EL.style.border="visible";
-        gold_EL.style.border="visible";
-        hero_EL.style.border="visible";
-        hero_num_EL.style.border="visible";
-        images_EL.style.border="visible";
-        console.log("Checkbox is checked..");
-        } 
-    else {
-        monster_EL.style.border="hidden";
-        gold_EL.style.border="hidden";
-        hero_EL.style.border="hidden";
-        hero_num_EL.style.border="hidden";
-        images_EL.style.border="hidden";
-        console.log("Checkbox is not checkd..");
-      }
+
+
+monster_EL.addEventListener("click", monsterClick); // Når vi klikker på monster
+hero_EL.addEventListener("click", hireHero);
+
+var timer = setInterval(myTimer, seconds); // Kjører funksjonen mytimer 1 gang i sekundet
+function myTimer(){
+    if (heroes >= 1){
+        monsterClick();
+    }
+    gold_EL.innerHTML = gold;
 }
