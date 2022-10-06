@@ -1,12 +1,19 @@
+body{
+    background-image: url("Pictures/Backgrounds/sky.png");
+    background-size: cover;
+    align-content: center;
+}
 .container {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-between;
     border: 3px solid violet;
     flex-direction: row;
     flex-wrap: nowrap;
     height: fit-content;
     width: fit-content;
+    align-content: center;
+    width: 100%;
 }
     .money {
         display: flex;
@@ -14,11 +21,13 @@
         border: 3px solid black;
         height: fit-content;
         width: fit-content;
+        order: 3;
     }
         .moneyPouch{
             position: relative;
             height: 8%;
             border: 3px dotted red;
+            width: 150px;
         }
         .gold{
             position: relative;
@@ -31,12 +40,14 @@
         height: fit-content;
         max-width: 30%;
         max-height: 15%;
+        align-self: flex-start;
+        order: -1;
     }
-        .catKnight{
+        .hero{
             align-self: center;
             position: relative;
             width: 100%;
-            height: 45%;
+            height: 250px;
             border: 3px solid pink;
         }
         .heroNum{
@@ -44,12 +55,20 @@
             align-self: center;
             border: 3px dotted red;
         }
+        .cost{
+            align-self: center;
+            position: relative;
+            border: 3px dotted red;
+        }
     .images {
         display: flex;
+        position: relative;
         flex-direction: column;
         align-self: right;
         border: 3px solid black;
         height: fit-content;
+        width: fit-content;
+        /*margin-top: 50px;*/
     }
         .monsters {
             order: 1;
@@ -83,7 +102,7 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            bottom: 75px;
+            bottom: 100px;
         }
 
 
