@@ -27,6 +27,13 @@ var drop = 6;
 var hp = 12;
 var maxHp = 12;
 
+let totalKills = 0;
+let bossCountdown = 0;
+
+let slimesKilled = 0;
+let boarsKilled = 0;
+let orcsKilled = 0;
+
 var archers = 0;
 var archerSeconds = 2000;
 var hireArcher = 36;
@@ -42,6 +49,21 @@ function slimes(){
     drop = 6;
     maxHp = 12;
     hp = 12;
+    if (slimesKilled >= 15){
+        maxHp = Math.round(maxHp * 1.50);
+        hp = Math.round(hp * 1.50);
+    }
+}
+
+function orcs(){
+    monster_EL.src="Pictures/Monsters/orcMonster.png";
+    drop = 100;
+    maxHp = 250;
+    hp = 250;
+    if (orcsKilled >= 10){
+        maxHp = Math.round(maxHp * 1.50);
+        hp = Math.round(hp * 1.50);
+    }
 }
 
 function boars(){
@@ -49,6 +71,10 @@ function boars(){
     drop = 8;
     maxHp = 24;
     hp = 24;
+    if (boarsKilled >= 15){
+        maxHp = Math.round(maxHp * 1.50);
+        hp = Math.round(hp * 1.50);
+    }
 }
 
 console.log(gold_EL);
@@ -67,6 +93,10 @@ function spawn(){
         }
         if (random(2) == 1) {
             slimes();
+        }
+        if (bossCountdown == 10){
+            orcs();
+            bossCountdown = 0;
         }
         health.value += hp;
         health.max = maxHp;
@@ -96,6 +126,22 @@ function die(){
         monster_EL.style.visibility="hidden";
         console.log("monster gone");
         gold += drop;
+        if (slimes()){
+            slimesKilled++;
+            console.log(slimesKilled);
+        }
+        if (boars()){
+            boarsKilled++;
+            console.log(boarsKilled);
+        }
+        if (orcs()){
+            orcsKilled++;
+            console.log(orcsKilled);
+        }
+        totalKills++;
+        console.log(totalKills);
+        bossCountdown++;
+        console.log(bossCountdown);
     } else {
         monster_EL.style.visibility="visible";
     }
@@ -106,12 +152,12 @@ function hireCatKnights(){
         catKnights++;
         cat_Knight_Num_EL.innerHTML = "Level: " + catKnights;
         gold -= hireCatKnight;
-        catKnightSeconds -= 10;
+        catKnightSeconds -= 1;
         catKnightTimer = setInterval(myTimerCatKnight, catKnightSeconds);
         hireCatKnight = Math.round(hireCatKnight * 1.30);
         hire_Cat_Knight_EL.innerHTML = "Upgrade: " + hireCatKnight + " Gold";
         if (catKnights >= 2){
-            catKnightAtk = Math.round(catKnightAtk * 1.40);
+            catKnightAtk = Math.round(catKnightAtk * 1.10);
         }    
     }
 }
@@ -121,12 +167,12 @@ function hireArchers(){
         archers++;
         archer_Num_EL.innerHTML = "Level: " + archers;
         gold -= hireArcher;
-        archerSeconds -= 10;
+        archerSeconds -= 1;
         archerTimer = setInterval(myTimerArcher, archerSeconds);
         hireArcher = Math.round(hireArcher * 1.30);
         hire_Archer_EL.innerHTML = "Upgrade: " + hireArcher + " Gold";
         if (archers >= 2){
-            archerAtk = Math.round(archerAtk * 1.40);
+            archerAtk = Math.round(archerAtk * 1.10);
         }    
     }
 }
