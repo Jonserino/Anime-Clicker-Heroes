@@ -45,6 +45,7 @@ body{
         order: -1;
         overflow: scroll;
     }
+
         .catKnight{
             align-self: center;
             width: 50%;
@@ -90,12 +91,16 @@ body{
             height: 400px;
             top: 15%;
             align-self: center;
-            animation: fadeIn ease 2s;
+            /*animation: fadeIn ease 2s;
             -webkit-animation: fadeIn ease 2s;
             -moz-animation: fadeIn ease 2s;
             -o-animation: fadeIn ease 2s;
-            -ms-animation: fadeIn ease 2s;
-            opacity: 0.9;
+            -ms-animation: fadeIn ease 2s;*/
+            opacity: 1;
+            animation-play-state: paused;
+            animation-name: damaged;
+            animation-duration: 0.5;
+            animation-iteration-count: 1;
         }
         .monsters:active{
             left: 5px;
@@ -118,12 +123,22 @@ body{
         }
 
 
+
+  @keyframes damaged {
+    0% {
+      size: 100%;
+    }
+    100% {
+      size: 30%;
+    }
+  }
+
   @keyframes fadeIn {
     0% {
       opacity:0;
     }
     100% {
-      opacity:0.9;
+      opacity:1;
     }
   }
   
@@ -132,7 +147,7 @@ body{
       opacity:0;
     }
     100% {
-      opacity:0.9;
+      opacity:1;
     }
   }
   
@@ -141,7 +156,7 @@ body{
       opacity:0;
     }
     100% {
-      opacity:0.9;
+      opacity:1;
     }
   }
   
@@ -150,7 +165,7 @@ body{
       opacity:0;
     }
     100% {
-      opacity:0.9;
+      opacity:1;
     }
   }
   
@@ -159,12 +174,12 @@ body{
       opacity:0;
     }
     100% {
-      opacity:0.9;
+      opacity:1;
   }
 }
 @keyframes fadeOut {
     0% {
-      opacity:0.9;
+      opacity:1;
     }
     100% {
       opacity:0;
@@ -173,7 +188,7 @@ body{
   
   @-moz-keyframes fadeOut {
     0% {
-      opacity:0.9;
+      opacity:1;
     }
     100% {
       opacity:0;
@@ -182,7 +197,7 @@ body{
   
   @-webkit-keyframes fadeOut {
     0% {
-      opacity:0.9;
+      opacity:1;
     }
     100% {
       opacity:0;
@@ -191,7 +206,7 @@ body{
   
   @-o-keyframes fadeOut {
     0% {
-      opacity:0.9;
+      opacity:1;
     }
     100% {
       opacity:0;
@@ -200,7 +215,7 @@ body{
   
   @-ms-keyframes fadeOut {
     0% {
-      opacity:0.9;
+      opacity:1;
     }
     100% {
       opacity:0;

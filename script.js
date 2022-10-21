@@ -20,6 +20,9 @@ let health = document.getElementById("health");
 function random(max){
     return Math.floor(Math.random() * max);
 }
+function bossChance(max){
+    return Math.floor(Math.random() * max);
+}
 
 
 var gold = 0;
@@ -28,7 +31,7 @@ var hp = 12;
 var maxHp = 12;
 
 let totalKills = 0;
-let bossCountdown = 0;
+let bossCountdown = 10;
 
 let slimesKilled = 0;
 let boarsKilled = 0;
@@ -44,8 +47,17 @@ var catKnightSeconds = 1000;
 var hireCatKnight = 24;
 var catKnightAtk = 4;
 
+/*function hit(){
+    
+    left: 5px;
+    top: 10px;
+    opacity: 0.8;
+}*/
+
+
 function slimes(){
     monster_EL.src="Pictures/Monsters/slimeMonster.png";
+    monster_EL.style.opacity=0.9;
     drop = 6;
     maxHp = 12;
     hp = 12;
@@ -57,7 +69,8 @@ function slimes(){
 
 function orcs(){
     monster_EL.src="Pictures/Monsters/orcMonster.png";
-    drop = 100;
+    monster_EL.style.opacity=1;
+    drop = 10000;
     maxHp = 250;
     hp = 250;
     if (orcsKilled >= 10){
@@ -68,6 +81,7 @@ function orcs(){
 
 function boars(){
     monster_EL.src="Pictures/Monsters/boarMonster.png";
+    monster_EL.style.opacity=1;
     drop = 8;
     maxHp = 24;
     hp = 24;
@@ -79,7 +93,6 @@ function boars(){
 
 console.log(gold_EL);
 console.log(hp);
-console.log(random(2));
 
 function spawn(){
     die()
@@ -87,16 +100,21 @@ function spawn(){
         monster_EL.style.visibility="visible";
     }
     if (health.value <= 0){
-        console.log(random(2));
-        if (random(2) == 0) {
+        spawnrate = random(2);
+        console.log("Normal spawnrate: " + spawnrate);
+        bossSpawnrate = bossChance(8);
+        console.log("Boss Spawn Chance: " + bossSpawnrate);
+        if (bossCountdown <= 0){
+            if (bossSpawnrate <= 2){
+                bossCountdown = 10; 
+                orcs();
+            }
+        }
+        else if (spawnrate == 0) {
             boars();
         }
-        if (random(2) == 1) {
+        else if (spawnrate == 1) {
             slimes();
-        }
-        if (bossCountdown == 10){
-            orcs();
-            bossCountdown = 0;
         }
         health.value += hp;
         health.max = maxHp;
@@ -111,13 +129,12 @@ function monsterClick(){
 function catKnightAtks(){
     console.log(health.value);
     health.value -= catKnightAtk;
-    console.log(catKnightAtk);
+    monster_EL.style.animationPlaystate="running";
 }
 
 function archerAtks(){
     console.log(health.value);
     health.value -= archerAtk;
-    console.log(archerAtk);
 }
 
 function die(){
@@ -126,22 +143,13 @@ function die(){
         monster_EL.style.visibility="hidden";
         console.log("monster gone");
         gold += drop;
-        if (slimes()){
-            slimesKilled++;
-            console.log(slimesKilled);
-        }
-        if (boars()){
-            boarsKilled++;
-            console.log(boarsKilled);
-        }
-        if (orcs()){
-            orcsKilled++;
-            console.log(orcsKilled);
-        }
         totalKills++;
-        console.log(totalKills);
-        bossCountdown++;
-        console.log(bossCountdown);
+        console.log("Total kills: " + totalKills);
+        bossCountdown--;
+        if (bossCountdown <= -1){
+            bossCountdown ++;
+        }
+        console.log("Kills until Boss: " + bossCountdown);
     } else {
         monster_EL.style.visibility="visible";
     }
@@ -158,6 +166,7 @@ function hireCatKnights(){
         hire_Cat_Knight_EL.innerHTML = "Upgrade: " + hireCatKnight + " Gold";
         if (catKnights >= 2){
             catKnightAtk = Math.round(catKnightAtk * 1.10);
+            console.log(catKnightAtk)
         }    
     }
 }
@@ -173,6 +182,7 @@ function hireArchers(){
         hire_Archer_EL.innerHTML = "Upgrade: " + hireArcher + " Gold";
         if (archers >= 2){
             archerAtk = Math.round(archerAtk * 1.10);
+            console.log(archerAtk)
         }    
     }
 }
@@ -181,6 +191,9 @@ function hireArchers(){
 monster_EL.addEventListener("click", monsterClick); // Når vi klikker på monster
 cat_Knight_EL.addEventListener("click", hireCatKnights);
 archer_EL.addEventListener("click", hireArchers);
+
+
+
 
 var catKnightTimer = setInterval(myTimerCatKnight, catKnightSeconds); // Kjører funksjonen mytimer 1 gang i sekundet
 var archerTimer = setInterval(myTimerArcher, archerSeconds); // Kjører funksjonen mytimer 1 gang i sekundet
