@@ -25,7 +25,7 @@ function bossChance(max){
 }
 
 
-var gold = 0;
+var gold = 24;
 var drop = 6;
 var hp = 12;
 var maxHp = 12;
@@ -47,13 +47,9 @@ var catKnightSeconds = 1000;
 var hireCatKnight = 24;
 var catKnightAtk = 4;
 
-/*function hit(){
-    
-    left: 5px;
-    top: 10px;
-    opacity: 0.8;
-}*/
-
+function damaged(){
+    monster_EL.style.animation="damaged 0.1s linear";
+}
 
 function slimes(){
     monster_EL.src="Pictures/Monsters/slimeMonster.png";
@@ -61,10 +57,6 @@ function slimes(){
     drop = 6;
     maxHp = 12;
     hp = 12;
-    if (slimesKilled >= 15){
-        maxHp = Math.round(maxHp * 1.50);
-        hp = Math.round(hp * 1.50);
-    }
 }
 
 function orcs(){
@@ -73,10 +65,6 @@ function orcs(){
     drop = 10000;
     maxHp = 250;
     hp = 250;
-    if (orcsKilled >= 10){
-        maxHp = Math.round(maxHp * 1.50);
-        hp = Math.round(hp * 1.50);
-    }
 }
 
 function boars(){
@@ -85,10 +73,6 @@ function boars(){
     drop = 8;
     maxHp = 24;
     hp = 24;
-    if (boarsKilled >= 15){
-        maxHp = Math.round(maxHp * 1.50);
-        hp = Math.round(hp * 1.50);
-    }
 }
 
 console.log(gold_EL);
@@ -129,12 +113,13 @@ function monsterClick(){
 function catKnightAtks(){
     console.log(health.value);
     health.value -= catKnightAtk;
-    monster_EL.style.animationPlaystate="running";
+    damaged();
 }
 
 function archerAtks(){
     console.log(health.value);
     health.value -= archerAtk;
+    damaged();
 }
 
 function die(){
@@ -195,19 +180,25 @@ archer_EL.addEventListener("click", hireArchers);
 
 
 
-var catKnightTimer = setInterval(myTimerCatKnight, catKnightSeconds); // Kjører funksjonen mytimer 1 gang i sekundet
-var archerTimer = setInterval(myTimerArcher, archerSeconds); // Kjører funksjonen mytimer 1 gang i sekundet
+var catKnightTimer = setInterval(myTimerCatKnight, catKnightSeconds);
+var archerTimer = setInterval(myTimerArcher, archerSeconds);
 var spawn_check = setInterval(spawn, 10)
+var monsterReset = setInterval(myTimerMonsterIdle, catKnightSeconds - 10);
 
 function myTimerCatKnight(){
     if (catKnights >= 1){
         catKnightAtks();
+        damaged();
     }
     gold_EL.innerHTML = gold;
 }
 function myTimerArcher(){
     if (archers >= 1){
         archerAtks();
+        damaged();
     }
     gold_EL.innerHTMl = gold;
+}
+function myTimerMonsterIdle(){
+    monster_EL.style.animation="idle";
 }

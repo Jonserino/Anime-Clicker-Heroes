@@ -2,6 +2,7 @@ body{
     background-image: url("Pictures/Backgrounds/sky.png");
     background-size: cover;
     align-content: center;
+    font-family: 'JAPANBRUSH';
 }
 .container {
     display: flex;
@@ -49,7 +50,7 @@ body{
         .catKnight{
             align-self: center;
             width: 50%;
-            height: 100px;
+            height: 75%;
             border: 3px solid pink;
         }
         .catKnightNum{
@@ -89,7 +90,7 @@ body{
             z-index: 2;
             width: 40%;
             height: 400px;
-            top: 15%;
+            top: 5px;
             align-self: center;
             /*animation: fadeIn ease 2s;
             -webkit-animation: fadeIn ease 2s;
@@ -103,9 +104,9 @@ body{
             animation-iteration-count: 1;
         }
         .monsters:active{
+            size: 30%;
             left: 5px;
             top: 10px;
-            opacity: 0.8;
         }
         .health{
             align-self: center;
@@ -123,14 +124,36 @@ body{
         }
 
 
-
   @keyframes damaged {
     0% {
       size: 100%;
+      top: 5px;
+      left: 0px;
+    }
+    50% {
+      size: 60%;
+      top: 2.5px;
+      left: 2.5px;
     }
     100% {
       size: 30%;
+      top: 5px;
+      left: 5px;
     }
+    50% {
+      size: 60%;
+      top: 2.5px;
+      left: 2.5px;
+    }
+    0% {
+      size: 100%;
+      top: 5px;
+      left: 0px;
+    }
+  }
+
+  @keyframes idle {
+    100% {}
   }
 
   @keyframes fadeIn {
