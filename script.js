@@ -1,6 +1,18 @@
 var monster_EL = document.querySelector("#monsters");
 var gold_EL = document.querySelector("#gold");
 
+const cursorSmall = document.querySelector('.small');
+const cursorBig = document.querySelector('.big');
+const positionElement = (e)=> {
+    const mouseY = e.clientY;
+    const mouseX = e.clientX;
+
+    cursorSmall.style.transform = 'translate3d(${mouseX}px, ${mouseY}px, 0)';
+    cursorBig.style.transform = 'translate3d(${mouseX}px, ${mouseY}px, 0)';
+}
+
+window.addEventListener('mousemove', positionElement);
+
 var cat_Knight_EL = document.querySelector("#catKnight");
 var cat_Knight_Num_EL = document.querySelector("#catKnightNum");
 var hire_Cat_Knight_EL = document.querySelector("#catKnightCost");
@@ -49,6 +61,7 @@ var catKnightAtk = 4;
 
 function damaged(){
     monster_EL.style.animation="damaged 0.1s linear";
+    monster_EL.style.animationPlayState="playing";
 }
 
 function slimes(){
@@ -108,6 +121,7 @@ function spawn(){
 function monsterClick(){
     console.log(health.value);
     health.value -= 1;
+    damaged();
 }
 
 function catKnightAtks(){
@@ -188,14 +202,12 @@ var monsterReset = setInterval(myTimerMonsterIdle, catKnightSeconds - 10);
 function myTimerCatKnight(){
     if (catKnights >= 1){
         catKnightAtks();
-        damaged();
     }
     gold_EL.innerHTML = gold;
 }
 function myTimerArcher(){
     if (archers >= 1){
         archerAtks();
-        damaged();
     }
     gold_EL.innerHTMl = gold;
 }

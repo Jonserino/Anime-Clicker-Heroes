@@ -1,5 +1,6 @@
 body{
     background-image: url("Pictures/Backgrounds/sky.png");
+    cursor: url("Pictures/Cursors/swordIdle.png"), auto;
     background-size: cover;
     align-content: center;
     font-family: 'JAPANBRUSH';
@@ -102,11 +103,6 @@ body{
             animation-name: damaged;
             animation-duration: 0.5;
             animation-iteration-count: 1;
-        }
-        .monsters:active{
-            size: 30%;
-            left: 5px;
-            top: 10px;
         }
         .health{
             align-self: center;
