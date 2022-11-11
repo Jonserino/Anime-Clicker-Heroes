@@ -1,15 +1,22 @@
 body{
     background-image: url("Pictures/Backgrounds/sky.png");
-    cursor: url("Pictures/Cursors/swordIdle.png"), auto;
     background-size: cover;
     align-content: center;
-    font-family: 'JAPANBRUSH';
+    font-family: 'HIRO MISAKE';
 }
+/* Dette var også til musepekeren, men fant det ikke ut
+.small {
+  image-rendering: url("Pictures/Cursors/swordIdle.png");
+}
+.big {
+  image-rendering: url("Pictures/Cursors/swordIdle.png");
+}
+*/
 .container {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    border: 3px solid violet;
+    /*border: 3px solid violet;*/
     flex-direction: row;
     flex-wrap: nowrap;
     height: 1200px;
@@ -20,14 +27,14 @@ body{
     .money {
         display: flex;
         flex-direction: column;
-        border: 3px solid black;
+        /*border: 3px solid black;*/
         height: fit-content;
         width: fit-content;
         order: 3;
     }
         .moneyPouch{
             height: 8%;
-            border: 3px dotted red;
+            /*border: 3px dotted red;*/
             width: 150px;
         }
         .gold{
@@ -37,7 +44,7 @@ body{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        border: 3px solid orange;
+        /*border: 3px solid orange;*/
         height: fit-content;
         width: 15%;
         max-width: 30%;
@@ -45,48 +52,48 @@ body{
         height: 1080px;
         align-self: flex-start;
         order: -1;
-        overflow: scroll;
+        /*overflow: scroll;*/
     }
 
         .catKnight{
             align-self: center;
             width: 50%;
             height: 75%;
-            border: 3px solid pink;
+            /*border: 3px solid pink;*/
         }
         .catKnightNum{
             align-self: center;
-            border: 3px dotted red;
+            /*border: 3px dotted red;*/
         }
         .catKnightCost{
             align-self: center;
-            border: 3px dotted red;
+            /*border: 3px dotted red;*/
         }
         .archer{
             align-self: center;
             width: 100%;
             height: 50%;
-            border: 3px solid palevioletred;
+            /*border: 3px solid palevioletred;*/
         }
         .archerNum{
             align-self: center;
-            border: 3px dotted red;
+            /*border: 3px dotted red;*/
         }
         .archerCost{
             align-self: center;
-            border: 3px dotted red;
+            /*border: 3px dotted red;*/
         }
     .images {
         display: flex;
         flex-direction: column;
         align-self: right;
-        border: 3px solid black;
+        /*border: 3px solid black;*/
         height: fit-content;
         width: fit-content;
     }
         .monsters {
             order: 1;
-            border: 3px dotted blue;
+            /*border: 3px dotted blue;*/
             position: relative;
             z-index: 2;
             width: 40%;
@@ -108,11 +115,11 @@ body{
             align-self: center;
             position: relative;
             top: 15%;
-            border: 3px dotted red;
+            /*border: 3px dotted red;*/
         }
         .platforms {
             order: 2;
-            border: 3px dotted lime;
+            /*border: 3px dotted lime;*/
             position: relative;
             z-index: 1;
             width: 100%;
